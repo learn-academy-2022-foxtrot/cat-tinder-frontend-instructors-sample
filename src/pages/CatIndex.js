@@ -3,7 +3,7 @@ import React from "react"
 const CatIndex = () => {
 
     return(
-        <>Cat Index!</>
+        <h1>Cat Index!</h1>
     )
 }
 

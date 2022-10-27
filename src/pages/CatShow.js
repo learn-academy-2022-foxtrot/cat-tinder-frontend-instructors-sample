@@ -3,7 +3,7 @@ import React from "react"
 const CatShow = () => {
 
     return(
-        <>Cat Show!</>
+        <h1>Cat Show!</h1>
     )
 }
 
