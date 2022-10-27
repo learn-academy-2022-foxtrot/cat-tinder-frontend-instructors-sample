@@ -3,7 +3,7 @@ import React from "react"
 const CatNew = () => {
 
     return(
-        <>Cat New!</>
+        <h1>Cat New!</h1>
     )
 }
 
