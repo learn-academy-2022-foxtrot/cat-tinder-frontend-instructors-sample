@@ -30,4 +30,16 @@ describe("<Header/>", ()=> {
         expect(screen.getByText("Adopt a Cat!")).toBeInTheDocument()
 
     })
+
+    // checks for a tag by its class name to contain some text
+    test('has a Nav tag with a className as "header-nav"', () => {
+        render(
+            <BrowserRouter>
+                <Header/>
+            </BrowserRouter>
+        )
+        const navTag = screen.getByText('Meet the Cats');
+        screen.debug(navTag)
+        expect(navTag).toHaveClass('nav-link')
+    })
 })

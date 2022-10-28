@@ -12,4 +12,18 @@ describe("<Home/>", ()=> {
         // Assert - what is expected
         expect(element).toBeInTheDocument()
     })
+
+    test("has an image with src and alt attributes", () => {
+        render(<Home />)
+        // run a screen.debug to see the document object and its roles
+        screen.debug(screen.getAllByRole('img'))
+        // checks for the first `img` tag and all of its props
+        // .getAllByRole is applicable when you are expecting more than one element to have the role. Using this method to show the technique
+        const catImage = screen.getAllByRole('img')[0]
+        expect(catImage).toHaveAttribute('src', 'cat-home.png')
+        expect(catImage).toHaveAttribute('alt', 'fluffy gray cat with sunglasses')
+
+
+    })
+
 })

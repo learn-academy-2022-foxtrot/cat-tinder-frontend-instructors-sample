@@ -1,4 +1,5 @@
 import React from "react"
+import catHome from "../assets/cat-home.png"
 
 const Home = () => {
 
@@ -13,6 +14,11 @@ const Home = () => {
                     <p className="lead">
                       It's like Tinder, but for Cats!
                     </p>
+                    <img
+                      src={catHome}
+                      alt="fluffy gray cat with sunglasses"
+                      className="cat-home"
+                    />
                   </div>
                 </div>
               </div>

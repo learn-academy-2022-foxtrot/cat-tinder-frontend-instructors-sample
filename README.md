@@ -46,3 +46,23 @@ Troubleshooting:
 - make sure your test template is complete(describe and test/it blocks)
 - Do you need BrowserRouter?
 - import userEvent from @testing-library/user-event
+
+## Office Hours
+
+- Work flow for front end testing
+    - imports from react, react-router-dom, etc
+    - proper structure of the test (describe, test, expect)
+    - what user interaction are you checking
+    - use screen.debug() to see document content
+
+- References  
+    [React Testing Library](https://testing-library.com/docs/queries/byrole/) 
+
+    [Free Code Camp](https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/)
+
+    [BobbyHadz Find by ClassName](https://bobbyhadz.com/blog/react-testing-library-find-by-classname)
+
+- Create an additional test for the component `Home.js` that checks for the first `img` tag and all of its props.
+
+- Create an additional test for the component `Header.js` that checks for a tag by its class name to contain some text.
+

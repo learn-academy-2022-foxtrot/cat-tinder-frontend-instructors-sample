@@ -1,6 +1,14 @@
-
+* {
+  text-align: center;
+}
 
 .header-nav {
   justify-content: space-evenly !important;
   align-items: center !important;
+}
+
+.cat-home {
+  height: 500px;
+  border-radius: 50%;
+  border: 3px solid black;
 }
