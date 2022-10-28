@@ -1,10 +1,32 @@
 import React from "react"
+import { Card, CardBody, Button } from "reactstrap"
+import {NavLink} from "react-router-dom"
 
-const CatIndex = () => {
+const CatIndex = ({ cats }) => {
+// console.log(cats)
+  return(
+    <>
+      <h1>Get ready to purr at this fur!</h1>
+      {cats?.map((cat, index) => {
+        return(
+          <>
+            <Card 
+              style={{ width: '18rem' }}
+              key={index}
+            >
+              <img src={cat.image} alt="image of eligible feline"/>
+              <CardBody>
+                <NavLink to={`/catshow/${cat.id}`}>
+                  {cat.name}
+                </NavLink>
+              </CardBody>
+            </Card>
+          </>
+        )
+      })}
+    </>
 
-    return(
-        <h1>Cat Index!</h1>
-    )
+  )
 }
 
 export default CatIndex
