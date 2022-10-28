@@ -66,3 +66,67 @@ Troubleshooting:
 
 - Create an additional test for the component `Header.js` that checks for a tag by its class name to contain some text.
 
+## Read functionality 10/28/22
+- As a developer, I can pass the cat mock data in state to my index component.
+- As a user, I can see a page that lists of all the cat names.
+- As a developer, I have test coverage on my index component.
+- As a developer, I can refactor the show route to require an id param to show one cat.
+- As a user, I can see a page featuring all the information for one cat.
+- As a user, I can click on a cat name and be taken to a page that shows me all the information about that cat.
+- As a developer, I have test coverage on my show component.
+
+### Plan
+#### CatIndex
+- Pass mockCat data from App.js to CatIndex through the component call
+    ```javascript
+        <Route path="/catindex" element={<CatIndex cats={ cats }/>} />
+    ```
+- Pass as props on the CatIndex page
+    - can be passed as props or destructure the data you want for the page with `{cats}`
+    ```javascript
+        const CatIndex = ({ cats }) => {
+    ```
+- Iterate across the array of objects to display each cat
+    ```javascript
+        { cats.map((cat, index) => {}) }
+    ```
+- Use conditional rendering to allow the component to wait for the data to reach the page to render the logic `cats?`
+    ```javascript
+        {cats?.map((cat, index) => {
+    ```
+- Use dot notation to abstract the values
+    `{cat.name}`
+
+#### CatShow
+- Pass mockCat data from App.js to CatShow through the component call and the id params on the route
+    ```javascript
+        <Route path="/catshow/:id" element={<CatShow cats={ cats }/>} />
+    ```
+- Pass as props on the CatShow page
+    ```javascript
+        const CatShow = ({ cats }) => {
+    ```
+- Make the params id from route available to select a specific cat, use the useParams from react-router-dom
+    ```javascript
+        const { id } = useParams()
+    ```
+- Use a variable to store the cat that has the same id as the params id from the route. unary operator changes the string datatype from the params to a number datatype. This number datatype matches the datatype of the id of the cat object. 
+    ```javascript
+        let showCat = cats.find(cat => cat.id === +id)
+    ```
+- Use conditional rendering to allow the component to wait for the data to reach the page to render the logic `cats?`. 
+    ```javascript
+          let showCat = cats?.find(cat => cat.id === +id)
+    ```
+- Use dot notation to abstract the values
+    `{showCat.name}`
+
+### Testing Tools
+- beforeEach(() => {})
+    - helps you render components or declare variables that can be seen across all the it methods in a describe block
+- screen.debug()
+    - helps you see the html content within a document that is rendered for that particular component
+
+
+                
+       
