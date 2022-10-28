@@ -11,7 +11,7 @@ import CatShow from "./pages/CatShow"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import { Routes, Route } from 'react-router-dom'
-
+import "./App.css"
 
 const App = () => {
 
