@@ -132,5 +132,111 @@ Troubleshooting:
     - Place `key={index}` in the most outlying html tag for the data that will be mapped.
 
 
-                
-       
+## Create Functionality - 10/31/22
+- Add unikitty to the list
+```bash
+{
+    name: "Unikitty",
+    age: 11,
+    enjoys: "hopping and being loud",
+    image: "https://live.staticflickr.com/8800/17085849346_a7f91549d6_b.jpg"
+}
+ ```
+- Restful routes: index, update, destroy, edit, create, new, show
+
+- New: restful route that displays a form to the user
+
+### Track entries on the form provided on CatNew page
+- Place a form on CatNew.js and update to match data entries
+```javascript
+    <Form>
+      <FormGroup>
+        <Label for="name">
+          Name
+        </Label>
+        <Input
+          name="name"
+          placeholder="What is your name?"
+          type="text"
+        />
+      </FormGroup>
+    </Form>
+```
+- Use state and a method to track the DOM events of what the user types
+```javascript
+  const [ newCat, setNewCat] = useState({
+    name: "",
+    age: "",
+    enjoys: "",
+    image: ""
+  })
+
+  const handleChange = (e) => {
+    // console.log("key for the cat object", e.target.name)
+    // console.log("updated value from user input", e.target.value)
+    setNewCat({...newCat, [e.target.name]:e.target.value})
+  }
+```
+- Use onChange event listener to invoke the method on each input
+```javascript
+        <Input
+          name="name"
+          placeholder="What is your name?"
+          type="text"
+          onChange={ handleChange }
+          // value={ newCat.name }
+        />
+```
+### Pass data up the river to App.js
+```javascript
+// Create a method to pass to CatNew
+  const createCat = ( cat ) => {
+    console.log("Created cat", cat)
+  }
+// pass method on component call
+    <Route path="/catnew" element={<CatNew createCat={ createCat }/>} />
+
+// use submit button to trigger the method call on CatNew.js and redirect to CatIndex page
+  const handleSubmit = () => {
+    createCat(newCat)
+    navigate("/catindex")
+  }
+
+    <Button onClick={handleSubmit} name="submit">
+    Submit
+    </Button>
+// 
+```      
+
+### Testing notes
+- Be mindful when using regex to search for text. For instance, searching the form entires for age with `/age/i` will produce results for data that has the text age and image. Recommend using the exact string "Age" to isolate the age entry for the form.
+```javascript
+
+    const ageLabel = screen.getAllByText(/age/i)
+    screen.debug(ageLabel)
+        // Output:
+        //     <label
+        //       class="form-label"
+        //       for="age"
+        //     >
+        //       Age
+        //     </label>
+
+        //     <label
+        //       class="form-label"
+        //       for="image"
+        //     >
+        //       Image
+        //     </label>
+
+    const ageLabel = screen.getByText("Age")
+    screen.debug(ageLabel)
+        // Output:
+        //     <label
+        //     class="form-label"
+        //     for="age"
+        //     >
+        //         Age
+        //     </label>
+
+```
