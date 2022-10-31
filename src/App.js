@@ -1,6 +1,5 @@
 
-import React from 'react'
-import mockCats from "./mockData"
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
@@ -15,12 +14,43 @@ import "./App.css"
 
 const App = () => {
 
-  const [cats, setCats] = useState(mockCats)
+  const [cats, setCats] = useState([])
   console.log(cats)
 
-  const createCat = ( cat ) => {
-    console.log("Created cat", cat)
+  useEffect(() => {
+    readCat() 
+  }, [])
+
+  const readCat = () => {
+  fetch("http://localhost:3000/cats")  // is the request
+    .then((response) => response.json())
+    .then((payload) => {
+      setCats(payload)
+    })
+    .catch((errors) => console.log("Cat read errors: ", errors))
   }
+
+  const createCat = ( newCat ) => {
+    fetch("http://localhost:3000/cats", {
+      body: JSON.stringify(newCat),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(()=> readCat())
+    .catch((errors) => console.log("Cat create errors: ", errors))
+  }
+
+  const updateCat = () => {
+    // console.log('updated cat: ', updatedCat)
+  }
+
+  const deleteCat = () => {
+    // console.log(deletedCat)
+  }
+
 
   return (
     <>
