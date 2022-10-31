@@ -6,13 +6,12 @@ const CatIndex = ({ cats }) => {
 // console.log(cats)
   return(
     <>
-      <h1>Get ready to purr at this fur!</h1>
+      <h1>Get ready to purr at this fur!</h1>     
       {cats?.map((cat, index) => {
         return(
-          <>
+          <div key={index} className="cat-index">
             <Card 
               style={{ width: '18rem' }}
-              key={index}
             >
               <img src={cat.image} alt="image of eligible feline"/>
               <CardBody>
@@ -21,11 +20,10 @@ const CatIndex = ({ cats }) => {
                 </NavLink>
               </CardBody>
             </Card>
-          </>
+          </div>
         )
       })}
     </>
-
   )
 }
 

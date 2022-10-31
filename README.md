@@ -127,6 +127,10 @@ Troubleshooting:
 - screen.debug()
     - helps you see the html content within a document that is rendered for that particular component
 
+## Warning: Each child in a list should have a unique "key" prop.
+    - Clear this warning by providing the index as the the unique key that React needs for the mapping data.
+    - Place `key={index}` in the most outlying html tag for the data that will be mapped.
+
 
                 
        

@@ -12,3 +12,13 @@
   border-radius: 50%;
   border: 3px solid black;
 }
+
+.card {
+  margin: 2rem 0;
+}
+
+.cat-index, .cat-show {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
