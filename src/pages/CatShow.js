@@ -14,9 +14,10 @@ const CatShow = ({cats}) => {
   return(
     <>
       <h1>Thanks for checking out my profile</h1>
+      <div className="cat-show">
       {showCat && 
         <Card 
-        style={{ width: '18rem' }}
+          style={{ width: '18rem' }}
         >
           <img src={showCat.image} alt="image of eligible feline"/>
           <CardBody>
@@ -39,6 +40,7 @@ const CatShow = ({cats}) => {
           </CardBody>
         </Card>
       }
+    </div>
     </>
   )
 }
