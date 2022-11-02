@@ -26,14 +26,18 @@ describe("<CatIndex/>", ()=> {
     })
 
     test("renders cat cards", () => {
+
       mockCats.forEach(cat => {
         // name
         const catName = screen.getByText(cat.name)
         expect(catName).toBeInTheDocument()
-        // image
-        const catImage = screen.getAllByRole('img')
-        expect(catImage).toBeVisible
       })
+
+      // image
+      const catImage = screen.getAllByRole('img')
+      screen.debug(catImage[0])
+      expect(catImage[0]).toBeInTheDocument()
+
     })
 
 })

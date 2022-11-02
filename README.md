@@ -211,7 +211,6 @@ Troubleshooting:
 ### Testing notes
 - Be mindful when using regex to search for text. For instance, searching the form entires for age with `/age/i` will produce results for data that has the text age and image. Recommend using the exact string "Age" to isolate the age entry for the form.
 ```javascript
-
     const ageLabel = screen.getAllByText(/age/i)
     screen.debug(ageLabel)
         // Output:
@@ -238,5 +237,30 @@ Troubleshooting:
         //     >
         //         Age
         //     </label>
+```
 
+- Correction for the error on CatIndex.test.js
+```javascript
+    // When using`.getAllByRole` to acquire the data that contain the img role, an array was produced. To test that each object will be visible with an image tag, only one image can be tested at a time. Bracket notation was used to test one object at a time.
+
+    // image
+    const catImage = screen.getAllByRole('img')
+    screen.debug(catImage)
+    // Output:
+    //   <img
+    //     alt="image of eligible feline"
+    //     src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+    //   />
+
+    //   <img
+    //     alt="image of eligible feline"
+    //     src="https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1092&q=80"
+    //   />
+
+    //   <img
+    //     alt="image of eligible feline"
+    //     src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+    //   />
+
+    expect(catImage[0]).toBeInTheDocument()
 ```
